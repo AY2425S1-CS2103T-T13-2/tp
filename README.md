@@ -1,4 +1,4 @@
-![CI Status](https://github.com/AY2425S1-CS2103T-T13-2/tp/actions/workflows/gradle.yml/badge.svg?branch=main)
+![CI Status](https://github.com/AY2425S1-CS2103T-T13-2/tp/actions/workflows/gradle.yml/badge.svg?branch=master)
 
 ![Ui](docs/images/Ui.png)
 
