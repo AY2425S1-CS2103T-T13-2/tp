@@ -55,7 +55,9 @@ public class Person {
         return address;
     }
 
-    public PostalCode getPostalCode() { return postalCode; }
+    public PostalCode getPostalCode() {
+        return postalCode;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
