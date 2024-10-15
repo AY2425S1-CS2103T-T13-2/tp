@@ -17,7 +17,7 @@ public class TagTest {
     @Test
     public void constructor_invalidTagName_throwsIllegalArgumentException() {
         String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Tag(invalidTagName));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(new Alias(invalidTagName)));
     }
 
     @Test
@@ -28,24 +28,24 @@ public class TagTest {
 
     @Test
     public void hashMapSuccess() {
-        assertEquals(new Tag("v").toString(), "[Vegan]");
-        assertEquals(new Tag("vg").toString(), "[Vegetarian]");
+        assertEquals(new Tag(new Alias("v")).toString(), "[Vegan]");
+        assertEquals(new Tag(new Alias("vg")).toString(), "[Vegetarian]");
     }
 
     @Test
     public void equalsSuccess() {
         //testing shortcut
-        assertTrue(new Tag("Vegan").equals(new Tag("v")));
+        assertTrue(new Tag(new Alias("v")).equals(new Tag(new Alias("Vegan"))));
         //testing custom tags
-        assertTrue(new Tag("No pork").equals(new Tag("No pork")));
+        assertTrue(new Tag(new Alias("No Pork")).equals(new Tag(new Alias("No Pork"))));
         //testing against null
-        assertFalse(new Tag("Vegan").equals(null));
+        assertFalse(new Tag(new Alias("v")).equals(null));
     }
 
     @Test
     public void addShortCutSuccess() {
-        Tag.addDietaryRestrictionMapping("np", "No Pork");
-        assertTrue(Tag.getDietaryRestrictionsMappings().containsKey("np"));
+        Tag.addAliasTagNameMapping(new Alias("np"), new TagName("No Pork"));
+        assertTrue(Tag.getAliasToTagNameMapping().containsKey(new Alias("np")));
     }
 
 

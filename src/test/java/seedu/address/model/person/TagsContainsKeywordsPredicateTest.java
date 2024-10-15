@@ -17,7 +17,7 @@ public class TagsContainsKeywordsPredicateTest {
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("Vegan");
-        List<String> secondPredicateKeywordList = Arrays.asList("Vegan", "Gluten-free");
+        List<String> secondPredicateKeywordList = Arrays.asList("Vegan", "Gluten free");
 
         TagsContainsKeywordsPredicate firstPredicate = new TagsContainsKeywordsPredicate(firstPredicateKeywordList);
         TagsContainsKeywordsPredicate secondPredicate = new TagsContainsKeywordsPredicate(secondPredicateKeywordList);
@@ -77,8 +77,9 @@ public class TagsContainsKeywordsPredicateTest {
     public void toStringMethod() {
         List<String> keywords = List.of("Vegan", "Gluten free");
         TagsContainsKeywordsPredicate predicate = new TagsContainsKeywordsPredicate(keywords);
+        String test = predicate.toString();
 
-        String expected = TagsContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = TagsContainsKeywordsPredicate.class.getCanonicalName() + "[keywords=" + keywords + "]";
         assertEquals(expected, predicate.toString());
     }
 }

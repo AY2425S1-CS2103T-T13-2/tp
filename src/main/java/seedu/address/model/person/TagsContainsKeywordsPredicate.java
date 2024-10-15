@@ -4,32 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
-
-
+import seedu.address.model.tag.TagName;
 
 /**
  * Tests that a {@code Person}'s {@code Tags} matches any of the keywords given.
  */
 public class TagsContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
+
     /**
-     * This constructor takes a list of keywords and replaces any keyword that matches a short code
-     * in the {@code Tag.DIETARY_RESTRICTION_MAP} with its corresponding full dietary restriction name.
+     * This constructor takes a list of keywords and replaces any keyword that matches an alias
+     * in the {@code Tag.getAliasToTagNameMapping()} with its corresponding full tag name.
      * If no match is found, the keyword remains unchanged. The modified list is then assigned to the
      * {@code keywords} field.
      *
-     * @param keywords A list of keywords toi be processed and matched again
-     *
+     * @param keywords A list of keywords to be processed and matched.
      */
     public TagsContainsKeywordsPredicate(List<String> keywords) {
         List<String> mappedKeywords = new ArrayList<>();
-        for (String item : keywords) {
-            String mappedItem = Tag.getDietaryRestrictionsMappings().getOrDefault(item, item);
-            mappedKeywords.add(mappedItem);
+        for (String keyword : keywords) {
+            // Check if the keyword is an alias and map it to the full tag name, otherwise use it as-is
+            TagName mappedTagName = Tag.getAliasToTagNameMapping()
+                    .entrySet()
+                    .stream()
+                    .filter(entry -> entry.getKey().toString().equalsIgnoreCase(keyword))
+                    .map(entry -> entry.getValue())
+                    .findFirst()
+                    .orElse(new TagName(keyword)); // If no alias found, use keyword as tag name
+            mappedKeywords.add(mappedTagName.toString());
         }
         this.keywords = mappedKeywords;
     }
@@ -37,17 +41,21 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         Set<Tag> tags = person.getTags();
-        //handling case where keywords are empty
+
+        // Handling case where keywords are empty
         if (keywords.isEmpty()) {
             return false;
         }
-        //converting tags and keywords to stream to iterate through effectively
-        Stream<Tag> tagStream = tags.stream();
-        Stream<String> keywordStream = keywords.stream().map(String::toLowerCase);
 
-        // Stream through the tags and check if any match the keyword (case-insensitive)
-        return tagStream.anyMatch(tag ->
-                keywordStream.anyMatch(keyword -> tag.tagName.toLowerCase().contains(keyword))
+        // Convert all keywords to lowercase
+        List<String> lowerCaseKeywords = keywords.stream()
+                .map(String::toLowerCase)
+                .toList();
+
+        // Stream through the tags and check if any tag matches a keyword (case-insensitive)
+        return tags.stream().anyMatch(tag ->
+                lowerCaseKeywords.stream()
+                        .anyMatch(keyword -> tag.getTagName().toString().toLowerCase().contains(keyword))
         );
     }
 
@@ -58,15 +66,16 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TagsContainsKeywordsPredicate otherTagsContainsKeywordsPredicate)) {
+        if (!(other instanceof TagsContainsKeywordsPredicate)) {
             return false;
         }
 
-        return keywords.equals(otherTagsContainsKeywordsPredicate.keywords);
+        TagsContainsKeywordsPredicate otherPredicate = (TagsContainsKeywordsPredicate) other;
+        return keywords.equals(otherPredicate.keywords);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return TagsContainsKeywordsPredicate.class.getCanonicalName() + String.format("[keywords=%s]", keywords);
     }
 }

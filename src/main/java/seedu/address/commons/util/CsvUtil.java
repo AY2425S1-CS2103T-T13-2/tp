@@ -30,7 +30,7 @@ public class CsvUtil {
 
             Set<Tag> tags = person.getTags();
             String tagsString = tags.stream()
-                    .map(tag -> escapeSpecialCharacters(tag.getTagName()))
+                    .map(tag -> escapeSpecialCharacters(tag.getTagName().toString()))
                     .collect(Collectors.joining(";"));
 
             csvBuilder.append(name).append(",");
