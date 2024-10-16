@@ -15,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Alias;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -94,6 +95,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String tagName} into an {@code TagName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tagName} is invalid.
+     */
+    public static TagName parseTagName(String tagName) throws ParseException {
+        requireNonNull(tagName);
+        String trimmedtagName = tagName.trim();
+        if (!TagName.isValidTagName(trimmedtagName)) {
+            throw new ParseException(TagName.MESSAGE_CONSTRAINTS);
+        }
+        return new TagName(trimmedtagName);
+    }
+
+    /**
+     * Parses a {@code String alias} into an {@code Alias}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code alias} is invalid.
+     */
+    public static Alias parseAlias(String alias) throws ParseException {
+        requireNonNull(alias);
+        String trimmedAlias = alias.trim();
+        if (!Alias.isValidAlias(trimmedAlias)) {
+            throw new ParseException(Alias.MESSAGE_CONSTRAINTS);
+        }
+        return new Alias(trimmedAlias);
     }
 
     /**
