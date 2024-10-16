@@ -3,10 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGNAME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -36,6 +38,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3 #23-345";
     public static final String VALID_TAG_VEGAN = "Vegan";
     public static final String VALID_TAG_VEGETARIAN = "Vegetarian";
+    public static final String VALID_ALIAS_VEGAN = "v";
+    public static final String INVALID_ALIAS_DESC = "v*";
+    public static final String VALID_TAGNAME_VEGAN = "Vegan";
+    public static final String INVALID_TAGNAME_DESC = "V*egan";
+
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,9 +53,10 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_VEGAN = " " + PREFIX_TAG + VALID_TAG_VEGAN; //to edit
+    public static final String TAG_DESC_VEGAN = " " + PREFIX_TAG + VALID_TAG_VEGAN;
     public static final String TAG_DESC_VEGETARIAN = " " + PREFIX_TAG + VALID_TAG_VEGETARIAN;
-
+    public static final String ALIAS_DESC_VEGAN = " " + PREFIX_ALIAS + VALID_ALIAS_VEGAN;
+    public static final String TAGNAME_DESC_VEGAN = " " + PREFIX_TAGNAME + VALID_TAGNAME_VEGAN;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol

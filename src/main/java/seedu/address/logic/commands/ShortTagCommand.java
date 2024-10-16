@@ -8,7 +8,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Alias;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
 
 /**
@@ -33,7 +32,7 @@ public class ShortTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Tag.addAliasTagNameMapping(alias, tagName);
+        model.setShortTag(alias, tagName);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.formatTag(alias, tagName)));
     }
 

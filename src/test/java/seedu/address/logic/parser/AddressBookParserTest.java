@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DelShortTagCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -23,10 +24,13 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ShortTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TagsContainsKeywordsPredicate;
+import seedu.address.model.tag.Alias;
+import seedu.address.model.tag.TagName;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -99,6 +103,22 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
+
+    @Test
+    public void parseCommand_shortTag() throws Exception {
+        Alias alias = new Alias("v");
+        TagName tagName = new TagName("Vegan");
+        ShortTagCommand expectedCommand = new ShortTagCommand(alias, tagName);
+        assertEquals(expectedCommand, parser.parseCommand(ShortTagCommand.COMMAND_WORD + " al/v tn/Vegan"));
+    }
+
+    @Test
+    public void parseCommand_delShortTag() throws Exception {
+        Alias alias = new Alias("v");
+        DelShortTagCommand expectedCommand = new DelShortTagCommand(alias);
+        assertEquals(expectedCommand, parser.parseCommand(DelShortTagCommand.COMMAND_WORD + " al/v"));
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

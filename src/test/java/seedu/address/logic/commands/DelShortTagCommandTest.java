@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -23,75 +23,87 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Alias;
 import seedu.address.model.tag.TagName;
 
-public class ShortTagCommandTest {
+public class DelShortTagCommandTest {
 
     private static final Alias VALID_ALIAS = new Alias("v");
     private static final TagName VALID_TAG_NAME = new TagName("Vegan");
-    private static final Alias ANOTHER_ALIAS = new Alias("gf");
-    private static final TagName ANOTHER_TAG_NAME = new TagName("Gluten Free");
+    private static final Alias NON_EXISTENT_ALIAS = new Alias("gf"); // Alias not initially in the model
 
     @Test
-    public void constructor_nullAliasOrTagName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ShortTagCommand(null, VALID_TAG_NAME));
-        assertThrows(NullPointerException.class, () -> new ShortTagCommand(VALID_ALIAS, null));
+    public void constructor_nullAlias_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DelShortTagCommand(null));
     }
 
     @Test
-    public void execute_aliasAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingAliasMapping modelStub = new ModelStubAcceptingAliasMapping();
-        ShortTagCommand shortTagCommand = new ShortTagCommand(VALID_ALIAS, VALID_TAG_NAME);
+    public void execute_aliasExists_removesAliasSuccessful() throws Exception {
+        ModelStubWithAliasMapping modelStub = new ModelStubWithAliasMapping();
+        DelShortTagCommand delShortTagCommand = new DelShortTagCommand(VALID_ALIAS);
 
-        CommandResult commandResult = shortTagCommand.execute(modelStub);
+        CommandResult commandResult = delShortTagCommand.execute(modelStub);
 
-        assertEquals(String.format(ShortTagCommand.MESSAGE_SUCCESS, Messages.formatTag(VALID_ALIAS, VALID_TAG_NAME)),
-                commandResult.getFeedbackToUser());
-        assertTrue(modelStub.aliasToTagMappingAdded.containsKey(VALID_ALIAS));
+        assertEquals(String.format(DelShortTagCommand.MESSAGE_SUCCESS, VALID_ALIAS), commandResult.getFeedbackToUser());
+        assertFalse(modelStub.aliasToTagMappingAdded.containsKey(VALID_ALIAS)); // Ensure alias was removed
+    }
+
+    @Test
+    public void execute_aliasDoesNotExist_throwsCommandException() {
+        ModelStubWithAliasMapping modelStub = new ModelStubWithAliasMapping();
+        DelShortTagCommand delShortTagCommand = new DelShortTagCommand(NON_EXISTENT_ALIAS);
+
+        assertThrows(CommandException.class,
+                String.format(DelShortTagCommand.MESSAGE_ALIAS_NOT_FOUND, NON_EXISTENT_ALIAS), (
+                ) -> delShortTagCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        ShortTagCommand addFirstAliasCommand = new ShortTagCommand(VALID_ALIAS, VALID_TAG_NAME);
-        ShortTagCommand addSecondAliasCommand = new ShortTagCommand(ANOTHER_ALIAS, ANOTHER_TAG_NAME);
+        DelShortTagCommand deleteFirstAliasCommand = new DelShortTagCommand(VALID_ALIAS);
+        DelShortTagCommand deleteSecondAliasCommand = new DelShortTagCommand(NON_EXISTENT_ALIAS);
 
         // same object -> returns true
-        assertTrue(addFirstAliasCommand.equals(addFirstAliasCommand));
+        assertTrue(deleteFirstAliasCommand.equals(deleteFirstAliasCommand));
 
         // same values -> returns true
-        ShortTagCommand addFirstAliasCommandCopy = new ShortTagCommand(VALID_ALIAS, VALID_TAG_NAME);
-        assertTrue(addFirstAliasCommand.equals(addFirstAliasCommandCopy));
+        DelShortTagCommand deleteFirstAliasCommandCopy = new DelShortTagCommand(VALID_ALIAS);
+        assertTrue(deleteFirstAliasCommand.equals(deleteFirstAliasCommandCopy));
 
         // different types -> returns false
-        assertFalse(addFirstAliasCommand.equals(1));
+        assertFalse(deleteFirstAliasCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addFirstAliasCommand.equals(null));
+        assertFalse(deleteFirstAliasCommand.equals(null));
 
-        // different alias and tagName -> returns false
-        assertFalse(addFirstAliasCommand.equals(addSecondAliasCommand));
+        // different alias -> returns false
+        assertFalse(deleteFirstAliasCommand.equals(deleteSecondAliasCommand));
     }
 
     /**
-     * A Model stub that accepts the alias to tagName mapping.
+     * A Model stub that contains the alias-to-tagName mapping.
      */
-    private class ModelStubAcceptingAliasMapping extends ModelStub {
+    private class ModelStubWithAliasMapping extends ModelStub {
         private HashMap<Alias, TagName> aliasToTagMappingAdded = new HashMap<>();
 
+        public ModelStubWithAliasMapping() {
+            // Add initial mappings
+            aliasToTagMappingAdded.put(VALID_ALIAS, VALID_TAG_NAME);
+        }
+
         @Override
-        public void setShortTag(Alias alias, TagName tagName) {
+        public void delShortTag(Alias alias) {
             requireNonNull(alias);
-            requireNonNull(tagName);
-            aliasToTagMappingAdded.put(alias, tagName);
+            aliasToTagMappingAdded.remove(alias);
         }
 
         @Override
         public boolean hasAlias(Alias alias) {
             return aliasToTagMappingAdded.containsKey(alias);
         }
-        public HashMap<Alias, TagName> getAliasTagNameMapping() {
+
+        @Override
+        public HashMap<Alias, TagName> getAliasToTagNameMapping() {
             return aliasToTagMappingAdded;
         }
     }
-
 
     /**
      * A default model stub that has all of the methods failing or returning default values.
@@ -100,6 +112,7 @@ public class ShortTagCommandTest {
         public void addAliasTagNameMapping(Alias alias, TagName tagName) {
             throw new AssertionError("This method should not be called.");
         }
+
         public boolean hasAlias(Alias alias) {
             throw new AssertionError("This method should not be called.");
         }

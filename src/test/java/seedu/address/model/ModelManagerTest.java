@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.tag.Alias;
+import seedu.address.model.tag.TagName;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -128,5 +130,46 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    public void setShortTag_validAliasTagName_addsMapping() {
+        Alias alias = new Alias("t");
+        TagName tagName = new TagName("Test Tag");
+        modelManager.setShortTag(alias, tagName);
+        assertEquals(tagName, modelManager.getAliasToTagNameMapping().get(alias));
+    }
+
+    @Test
+    public void setShortTag_overwriteExistingAlias_updatesMapping() {
+        Alias alias = new Alias("v");
+        TagName tagName = new TagName("Vegan");
+        modelManager.setShortTag(alias, tagName);
+        TagName newTagName = new TagName("Vegetarian");
+
+        // Overwriting existing alias
+        modelManager.setShortTag(alias, newTagName);
+        assertEquals(newTagName, modelManager.getAliasToTagNameMapping().get(alias));
+    }
+
+    @Test
+    public void delShortTag_existingAlias_removesMapping() {
+        Alias alias = new Alias("v");
+        TagName tagName = new TagName("Vegan");
+        modelManager.setShortTag(alias, tagName);
+        modelManager.delShortTag(alias);
+
+        // Check that alias is removed
+        assertFalse(modelManager.getAliasToTagNameMapping().containsKey(alias));
+    }
+
+    @Test
+    public void delShortTag_nonExistentAlias_doesNothing() {
+        Alias alias = new Alias("nonexistent");
+        TagName tagName = new TagName("Nonexistent Tag");
+
+        // Attempting to remove an alias that doesn't exist should not cause errors
+        modelManager.delShortTag(alias);
+        assertFalse(modelManager.getAliasToTagNameMapping().containsKey(alias));
     }
 }

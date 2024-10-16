@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Alias;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagName;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +27,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -143,6 +149,17 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    //=========== Alias to TagName Mappings =============================================================
+    public HashMap<Alias, TagName> getAliasToTagNameMapping() {
+        return Tag.getAliasToTagNameMapping();
+    }
+    public void setShortTag(Alias alias, TagName tagName) {
+        Tag.addAliasTagNameMapping(alias, tagName);
+    }
+    public void delShortTag(Alias alias) {
+        Tag.removeAliasTagNameMapping(alias);
     }
 
 }
