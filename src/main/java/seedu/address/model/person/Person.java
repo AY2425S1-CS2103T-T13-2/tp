@@ -27,19 +27,17 @@ public class Person implements Comparable<Person> {
 
     // Data fields
     private final Address address;
-    private final PostalCode postalCode;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, PostalCode postalCode, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, postalCode, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.postalCode = postalCode;
         this.tags.addAll(tags);
         this.orderFrequency = new HashMap<>();
     }
@@ -47,15 +45,13 @@ public class Person implements Comparable<Person> {
     /**
      * Every field with orderFrequency must be present and not null
      */
-    public Person(Name name, Phone phone, Email email, Address address, PostalCode postalCode, Set<Tag> tags,
-                  HashMap<Order, Integer> orders) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, HashMap<Order, Integer> orders) {
         requireAllNonNull(name, phone, email, address, tags, orders);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.postalCode = postalCode;
         this.orderFrequency = orders;
     }
 
@@ -73,10 +69,6 @@ public class Person implements Comparable<Person> {
 
     public Address getAddress() {
         return address;
-    }
-
-    public PostalCode getPostalCode() {
-        return postalCode;
     }
 
     public HashMap<Order, Integer> getOrderFrequency() {
@@ -164,14 +156,13 @@ public class Person implements Comparable<Person> {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && postalCode.equals(otherPerson.postalCode)
                 && orderFrequency.equals(otherPerson.orderFrequency);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, postalCode, tags, orderFrequency);
+        return Objects.hash(name, phone, email, address, tags, orderFrequency);
     }
 
     @Override
@@ -181,7 +172,6 @@ public class Person implements Comparable<Person> {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("postalCode", postalCode)
                 .add("tags", tags)
                 .add("orders", orderFrequency)
                 .toString();
