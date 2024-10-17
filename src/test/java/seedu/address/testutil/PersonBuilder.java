@@ -104,6 +104,13 @@ public class PersonBuilder {
         this.orderFrequency = orders;
         return this;
     }
+    /**
+     * Sets the {@code PostalCode} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPostalCode(String postalCode) {
+        this.postalCode = new PostalCode(postalCode);
+        return this;
+    }
 
     public Person build() {
         return new Person(name, phone, email, address, postalCode, tags, orderFrequency);
