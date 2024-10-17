@@ -41,6 +41,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        postalCode = new PostalCode(DEFAULT_POSTAL);
         tags = new HashSet<>();
         orderFrequency = new HashMap<>();
     }
@@ -53,6 +54,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        postalCode = personToCopy.getPostalCode();
         tags = new HashSet<>(personToCopy.getTags());
         orderFrequency = new HashMap<>(personToCopy.getOrderFrequency());
     }

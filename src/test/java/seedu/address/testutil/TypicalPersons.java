@@ -26,33 +26,33 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111 S123456").withEmail("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withPostalCode("123456")
             .withTags("Vegan").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25 S123456")
+            .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withPostalCode("123456")
             .withTags("Vegetarian", "Gluten Free").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street #12-345 S123456").withTags("Vegan")
+            .withEmail("heinz@example.com").withAddress("wall street, #12-345 S123456").withTags("Vegan")
             .withPostalCode("123456").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street #12-345 S123456").withPostalCode("123456")
+            .withEmail("cornelia@example.com").withAddress("10th street, #12-345 S123456").withPostalCode("123456")
             .withTags("Gluten Free").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94824422")
-            .withEmail("werner@example.com").withAddress("michegan ave #12-345 S123456").withTags("Vegetarian")
+            .withEmail("werner@example.com").withAddress("michegan ave, #12-345 S123456").withTags("Vegetarian")
             .withPostalCode("123456").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824422")
-            .withEmail("lydia@example.com").withAddress("little tokyo S123456").withPostalCode("123456").build();
+            .withEmail("lydia@example.com").withAddress("little tokyo, #12-34 S123456").withPostalCode("123456").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824422")
-            .withEmail("anna@example.com").withAddress("4th street S123456").withPostalCode("123456").build();
+            .withEmail("anna@example.com").withAddress("4th street, #12-34 S123456").withPostalCode("123456").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84822424")
-            .withEmail("stefan@example.com").withAddress("little india S123456").withPostalCode("123456").build();
+            .withEmail("stefan@example.com").withAddress("little india, #12-34 S123456").withPostalCode("123456").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("84822131")
-            .withEmail("hans@example.com").withAddress("chicago ave S123456").withPostalCode("123456").build();
+            .withEmail("hans@example.com").withAddress("chicago ave, #12-34 S123456").withPostalCode("123456").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
