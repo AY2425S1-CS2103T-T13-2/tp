@@ -20,7 +20,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street S123456",
     "postalCode": "123456",
-    "tags" : [ "Vegan"]
+    "tags" : [ "Vegan" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
