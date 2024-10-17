@@ -33,14 +33,27 @@ After running the application, you can entier commands to manage your address bo
   ```
   delete 1
   ```
-- **Find a Contact**
+- **Find a Contact**  
+Users can find a contact by name, phone number and/or postal code  
+_Note that find by postal code requires an `S` predicate._
     ```
     find KEYWORD
     ```
-  Example:
+  Examples:
     ```
     find John
     ```
+  ```
+  find 81234567
+  ```
+  ```
+  find S123456
+  ```   
+  Users can find multiple contacts using a combination of searches.  
+  The following will return **all** users with the name `Alice`, phone number `82357293` **or** partial postal code of `560xxx`  
+  ```
+  find Alice 82357293 S560
+  ```
 - **Add Remark to a Contact**
     ```
     remark INDEX REMARK
@@ -51,5 +64,3 @@ After running the application, you can entier commands to manage your address bo
     ```
 ---
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-
-test 

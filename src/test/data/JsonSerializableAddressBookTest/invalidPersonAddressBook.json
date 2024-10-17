@@ -3,10 +3,14 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
+<<<<<<< HEAD
     "address": "4th street",
     "postalCode": "123456"
   } ],
   "orders": [ {
     "name": "test"
+=======
+    "address": "4th street"
+>>>>>>> f2864505 (Modify postal code format)
   } ]
 }

@@ -18,6 +18,7 @@ public class Address {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String POSTAL_CODE_REGEX = "S\\d{6}"; // postal code must be Sxxxxxx
     public static final String DOOR_NUMBER_REGEX = "#\\d{2,3}-\\d{2,4}";
 
     public final String value;

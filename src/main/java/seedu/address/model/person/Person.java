@@ -47,16 +47,16 @@ public class Person implements Comparable<Person> {
     /**
      * Every field with orderFrequency must be present and not null
      */
-    public Person(Name name, Phone phone, Email email, Address address, PostalCode postalCode, Set<Tag> tags,
-                  HashMap<Order, Integer> orders) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  PostalCode postalCode, Set<Tag> tags, HashMap<Order, Integer> orders) {
         requireAllNonNull(name, phone, email, address, tags, orders);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.postalCode = postalCode;
         this.orderFrequency = orders;
+        this.postalCode = postalCode;
     }
 
     public Name getName() {
@@ -73,10 +73,6 @@ public class Person implements Comparable<Person> {
 
     public Address getAddress() {
         return address;
-    }
-
-    public PostalCode getPostalCode() {
-        return postalCode;
     }
 
     public HashMap<Order, Integer> getOrderFrequency() {
@@ -106,7 +102,9 @@ public class Person implements Comparable<Person> {
         }
         return sum;
     }
-
+    public PostalCode getPostalCode() {
+        return postalCode;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -164,8 +162,8 @@ public class Person implements Comparable<Person> {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && postalCode.equals(otherPerson.postalCode)
-                && orderFrequency.equals(otherPerson.orderFrequency);
+                && orderFrequency.equals(otherPerson.orderFrequency)
+                && postalCode.equals(otherPerson.postalCode);
     }
 
     @Override

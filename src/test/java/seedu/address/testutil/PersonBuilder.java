@@ -22,16 +22,16 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_POSTAL_CODE = "654321";
+    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, S081110";
+    public static final String DEFAULT_POSTAL = "081110";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private PostalCode postalCode;
     private Set<Tag> tags;
     private HashMap<Order, Integer> orderFrequency;
+    private PostalCode postalCode;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,7 +41,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        postalCode = new PostalCode(DEFAULT_POSTAL_CODE);
+        postalCode = new PostalCode(DEFAULT_POSTAL);
         tags = new HashSet<>();
         orderFrequency = new HashMap<>();
     }
@@ -100,18 +100,17 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code PostalCode} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPostalCode(String postalCode) {
-        this.postalCode = new PostalCode(postalCode);
-        return this;
-    }
-
-    /**
      * Sets the {@code orderFrequency} of the {@code Person} that we are building.
      */
     public PersonBuilder withOrderFrequency(HashMap<Order, Integer> orders) {
         this.orderFrequency = orders;
+        return this;
+    }
+    /**
+     * Sets the {@code PostalCode} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPostalCode(String postalCode) {
+        this.postalCode = new PostalCode(postalCode);
         return this;
     }
 
