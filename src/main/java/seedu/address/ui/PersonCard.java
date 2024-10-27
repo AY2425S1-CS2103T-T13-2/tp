@@ -59,4 +59,16 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
+    /**
+     * Updates background color when updating list
+     * @param isArchived
+     */
+    public void updateBackgroundColour(boolean isArchived) {
+        if (isArchived) {
+            cardPane.setStyle("-fx-background-color: #ff0000;");
+        } else {
+            cardPane.setStyle("-fx-background-color: transparent;");
+        }
+    }
 }
