@@ -50,11 +50,11 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        postalCode.setText(person.getPostalCode().value);
+        name.setText("NAME: " + person.getName().fullName);
+        phone.setText("PHONE: " + person.getPhone().value);
+        address.setText("ADDR: " + person.getAddress().value);
+        email.setText("EMAIL: " + person.getEmail().value);
+        postalCode.setText("POSTAL: " + person.getPostalCode().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
