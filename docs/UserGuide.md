@@ -35,7 +35,7 @@ NomNomNotifier brings powerful features right to your desktop, enabling quick an
     * [Exit Command: `exit`](#exiting-the-program--exit)
 * [FAQ](#faq)
 * [Known Issues](#known-issues)
-  
+
 ---
 
 ## Quick start
@@ -243,7 +243,7 @@ Users can search for customers by entering part or all of their phone number.
 
 #### Search by Postal Code
 
-Users can search for customers by entering part or all of their postal code. Postal code keyword should be prefixed with "S" 
+Users can search for customers by entering part or all of their postal code. Postal code keyword should be prefixed with "S"
 
 **Examples:**
 - `find S560123` — Finds any customers with the postal code "560123".
@@ -299,7 +299,7 @@ Deletes the specified customer from the contact list.
 Format: `delete POSTALCODE`
 
 * Delete all persons with the specified `POSTALCODE`.
-* The postal code **must be a 6 digits** 
+* The postal code **must be a 6 digits**
 
 Examples:
 * `list` followed by `deletePC 560102` deletes all persons with postal code `560102` in the contact list.
@@ -479,7 +479,7 @@ View all current shortcuts to see the mappings of aliases to tag names.
 ### Using Shortcuts for Tagging
 After setting shortcuts, you can tag contacts using these aliases.
 
-Usage: 
+Usage:
 - **In Edit Command**: `edit INDEX t/ALIAS` — Edits the tag for the contact at the specified index with the tag name associated with specified alias.
 - **In Add Command**: `add ... t/ALIAS` — Adds a new contact with the tag name associated with specified alias.
 
@@ -507,7 +507,7 @@ Format: `filter [KEYWORDS] [MORE_KEYWORDS] ...`
 
 Examples:
 * Assuming "v" (Vegan) and "np" (No Pork) shortcuts are set:
-    - `filter Vegan No-Pork` — Displays all customers with tags that start with “Vegan” or “No Pork” (e.g., including “VeganPlus,” which starts with “Vegan”). 
+    - `filter Vegan No-Pork` — Displays all customers with tags that start with “Vegan” or “No Pork” (e.g., including “VeganPlus,” which starts with “Vegan”).
     - `filter v np` — Uses shortcuts to display customers with tags that start with “Vegan” or “No Pork,” or any other tags beginning with those keywords, “v” and “np” (e.g., “Vegetarian,” which starts with “v”).
 
 <div style="text-align: center;">
@@ -574,10 +574,10 @@ Assuming there's at least one person that is archived.
 
 ---
 
-### **Downloading Data: `download`**  
+### **Downloading Data: `download`**
 Exports contact list as a CSV file with optional tag-based filtering.
 
-**Format:**  
+**Format:**
 `download [t/TAG1] [t/TAG2] ...`
 
 **Details:**

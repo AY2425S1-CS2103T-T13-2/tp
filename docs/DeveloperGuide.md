@@ -25,7 +25,7 @@ title: Developer Guide
   * JavaFX for UI
   * JUnit5 and TestFX for Testing
   * Jackson for Storage
-  
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -261,7 +261,7 @@ Given below is an example usage scenario and how the add shortcut mechanism work
 * After successfully adding the shortcut, `AddShortCutCommand` creates a `CommandResult` with a success message, such as `"New Shortcut added: v -> Vegan"`.
 * The result is returned back to `LogicManager`, completing the `addShortCut` command execution.
 
-![AddShortCutSequenceDiagram](images/AddShortCutSequenceDiagram.png)
+<img src="images/AddShortCutSequenceDiagram.png" alt="AddShortCutSequenceDiagram" width="100%"/>
 ---
 
 ### Delete Shortcut feature
@@ -300,7 +300,8 @@ Below is a step-by-step usage scenario of the `delShortCut` feature, illustratin
 * After successfully deleting the shortcut, `DelShortCutCommand` creates a `CommandResult` with the success message `"Shortcut Deleted: v"`.
 * The result is returned to `LogicManager`, completing the `delShortCut` command execution.
 
-![DelShortCutSequenceDiagram](images/DelShortCutSequenceDiagram.png)
+
+<img src="images/DelShortCutSequenceDiagram.png" alt="DelShortCutSequenceDiagram" width="100%"/>
 
 
 Additional Info
