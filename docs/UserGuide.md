@@ -7,34 +7,34 @@ Welcome to the NomNomNotifier User Guide, your essential toolkit for mastering c
 
 NomNomNotifier brings powerful features right to your desktop, enabling quick and accurate access to customer data like names, addresses, contact details, and dietary preferences. Our app enhances the speed of customer service while helping teams manage VIPs and special requests with ease. Combining a Command Line Interface (CLI) with a user-friendly Graphical Interface (GUI), NomNomNotifier offers the flexibility to work however you prefer—type commands to streamline actions or navigate visually to find exactly what you need.
 
-* Table of Contents
-    * [Quick start](#quick-start)
-    * [Command summary](#command-summary)
-    * Features
-        * [Add Customer](#adding-a-customer-add)
-        * [List Customers](#listing-all-customers--list)
-        * [Edit Customer](#editing-a-customer--edit)
-        * [Find Customers](#locating-customers-by-name-find)
-        * [Delete Customer](#deleting-a-customer--delete)
-        * [Delete Customers by PC](#deleting-customers--deletepc)
-        * [Clear all Customers](#clearing-all-entries--clear)
-        * [Add Order](#adding-an-order-order)
-        * [Delete Order](#deleting-an-order-deleteorder)
-        * [List Orders](#listing-all-orders-listorder)
-        * [Put Order to Customer](#adding-an-order-history-to-a-customer-put)
-        * [Finding Order History for Customer](#listing-all-order-histories-of-a-customer-history)
-        * [Creating Shortcut for Tags](#creating-shortcuts-for-tags)
-        * [Deleting Shortcut for Tags](#deleting-shortcuts-for-tags)
-        * [List all Shortcut Mappings](#listing-existing-shortcuts)
-        * [Using set shortcuts when tagging](#using-shortcuts-for-tagging)
-        * [Filter customers by tags](#filtering-by-tags-filter)
-        * [Archive customers](#archive-user-archive)
-        * [List Archived Customers](#list-archived-users-listarchive)
-        * [Unarchive Customers](#unarchive-user-unarchive)
-        * [Download Customer Data](#downloading-data-download)
-        * [Exit Command](#exiting-the-program--exit)
-    * [FAQ](#faq)
-    * [Known Issues](#known-issues)
+# Table of Contents
+* [Quick start](#quick-start)
+* [Command summary](#command-summary)
+* Features
+    * [Add Customer: `add`](#adding-a-customer-add)
+    * [List Customers: `list`](#listing-all-customers--list)
+    * [Edit Customer: `edit`](#editing-a-customer--edit)
+    * [Find Customers: `find`](#locating-customers-by-name-find)
+    * [Delete Customer: `delete`](#deleting-a-customer--delete)
+    * [Delete Customers by PC: `deletePC`](#deleting-customers--deletepc)
+    * [Clear all Customers: `clear`](#clearing-all-entries--clear)
+    * [Add Order: `order`](#adding-an-order-order)
+    * [Delete Order: `deleteOrder`](#deleting-an-order-deleteorder)
+    * [List Orders: `listOrder`](#listing-all-orders-listorder)
+    * [Put Order to Customer: `put`](#adding-an-order-history-to-a-customer-put)
+    * [Finding Order History for Customer: `history`](#listing-all-order-histories-of-a-customer-history)
+    * [Creating Shortcut for Tags: `addShortCut`](#creating-shortcuts-for-tags)
+    * [Deleting Shortcut for Tags: `delShortCut`](#deleting-shortcuts-for-tags)
+    * [List all Shortcut Mappings: `listShortCut`](#listing-existing-shortcuts)
+    * [Using set shortcuts when tagging](#using-shortcuts-for-tagging)
+    * [Filter customers by tags: `filter`](#filtering-by-tags-filter)
+    * [Archive customers: `archive`](#archive-user-archive)
+    * [List Archived Customers: `listarchive`](#list-archived-users-listarchive)
+    * [Unarchive Customers: `unarchive`](#unarchive-user-unarchive)
+    * [Download Customer Data: `download`](#downloading-data-download)
+    * [Exit Command: `exit`](#exiting-the-program--exit)
+* [FAQ](#faq)
+* [Known Issues](#known-issues)
   
 ---
 
@@ -69,28 +69,40 @@ NomNomNotifier brings powerful features right to your desktop, enabling quick an
 
 6. Refer to the [Features](#features) below for details on each command.
 
----
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
-| Action              | Format, Examples                                                                                                                                                     |
-|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`<br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**           | `clear`                                                                                                                                                              |
-| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
-| **Download**       | `download [t/TAG1] [t/TAG2] …​`<br> e.g., `download t/vegan`                                                                                                         |
-| **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                                         |
-| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
-| **List**            | `list`                                                                                                                                                               |
-| **Help**            | `help`                                                                                                                                                               |
-| **Add Shortcut**    | `addShortCut al/ALIAS tn/TAG_NAME`<br> e.g., `addShortCut al/v tn/Vegan`                                                                                             |
-| **Delete Shortcut** | `delShortCut al/ALIAS tn/TAG_NAME`<br> e.g., `delShortCut al/v tn/Vegan`                                                                                             |
-| **List Shortcuts**  | `listShortCut`                                                                                                                                                       |
-| **Filter**          | `filter`<br> e.g., `filter Vegan Vegetarian`                                                                                                                         |
+| Action                        | Format, Examples                                                                                                                                                  |
+|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`<br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**                     | `clear`                                                                                                                                                           |
+| **Delete**                    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               |
+| **Download**                  | `download [t/TAG1] [t/TAG2] …​`<br> e.g., `download t/vegan`                                                                                                      |
+| **Edit**                      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                                      |
+| **Find**                      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                        |
+| **List**                      | `list`                                                                                                                                                            |
+| **Help**                      | `help`                                                                                                                                                            |
+| **Add Shortcut**              | `addShortCut al/ALIAS tn/TAG_NAME`<br> e.g., `addShortCut al/v tn/Vegan`                                                                                          |
+| **Delete Shortcut**           | `delShortCut al/ALIAS tn/TAG_NAME`<br> e.g., `delShortCut al/v tn/Vegan`                                                                                          |
+| **List Shortcuts**            | `listShortCut`                                                                                                                                                    |
+| **Filter**                    | `filter`<br> e.g., `filter Vegan Vegetarian`                                                                                                                      |
+| **Add Order**                 | `order [ORDER]` <br> eg. `order cake`                                                                                                                             |
+| **Delete Order**              | `deleteOrder [ORDER] `<br> e.g., `deleteOrder cake`                                                                                                               |
+| **List Order**                | `listOrder`                                                                                                                                                       |
+| **Putting Order to Customer** | `put ORDER [n/NAME] `<br> e.g., `put pizza n/Alex Yeoh`                                                                                                           |
+| **Listing all order histories of a customer** | `history NAME `<br> e.g., `history Alex Yeoh`                                                                                                                  |
+| **Archive user** | `archive [index]`                                                                                                                 |
+| **List archived users** | `listarchive`                                                                                                                |
+| **Unarchive user** | ` unarchive [index]`                                                                                                                |
+| **Downloading Data:** | `download [t/TAG1] [t/TAG2] ...`<br> e.g., `download` <br> e.g., `download t/Vegan`                                                                                                                  |
+
 
 > **Note**: NomNomNotifier only accepts inputs in english without any emojis
 
 ---
+<div style="page-break-after: always;"></div>
+
 
 ## Features
 
@@ -112,6 +124,9 @@ NomNomNotifier brings powerful features right to your desktop, enabling quick an
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -121,6 +136,9 @@ Shows a message explaining how to access the help page.
 **Format:** `help`
 
 ---
+
+<div style="page-break-after: always;"></div>
+
 
 ### Adding a customer: `add`
 
@@ -145,6 +163,9 @@ Adds a customer to the contact list.
 
 ---
 
+<div style="page-break-after: always;"></div>
+
+
 ### Listing all customers : `list`
 
 Shows a list of all customers in contacts list.
@@ -158,6 +179,7 @@ Shows a list of all customers in contacts list.
 </div>
 
 ---
+
 
 ### Editing a customer : `edit`
 
@@ -485,8 +507,8 @@ Format: `filter [KEYWORDS] [MORE_KEYWORDS] ...`
 
 Examples:
 * Assuming "v" (Vegan) and "np" (No Pork) shortcuts are set:
-    - `filter Vegan No-Pork` — Displays all customers with tags that start with “Vegan” or “No Pork” (e.g., “VeganPlus,” which starts with “Vegan”). 
-    - `filter v np` — Uses shortcuts to display customers with tags that start with “Vegan” or “No Pork,” or any other tags beginning with those shortcuts, “v” and “np” (e.g., “Vegetarian,” which starts with “v”).
+    - `filter Vegan No-Pork` — Displays all customers with tags that start with “Vegan” or “No Pork” (e.g., including “VeganPlus,” which starts with “Vegan”). 
+    - `filter v np` — Uses shortcuts to display customers with tags that start with “Vegan” or “No Pork,” or any other tags beginning with those keywords, “v” and “np” (e.g., “Vegetarian,” which starts with “v”).
 
 <div style="text-align: center;">
     <img src="images/filter.png" alt="filter" width="350"/>
@@ -576,7 +598,7 @@ Exports contact list as a CSV file with optional tag-based filtering.
     <em>Figure 20: Shows entire contact list being downloaded</em>
 </div>
 
-<div style="text-align: center;">
+<div style="text-align: center; margin-top: 15px">
     <img src="images/download_shortcuts.png" alt="download shortcuts" width="350"/>
     <br>
     <em>Figure 21: Shows only people with vegan tag being added</em>
@@ -603,10 +625,6 @@ NomNomNotifier data are saved automatically as a JSON file `[JAR file location]/
 If your changes to the data file makes its format invalid, NomNomNotifier will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the NoNomNotifier application to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
