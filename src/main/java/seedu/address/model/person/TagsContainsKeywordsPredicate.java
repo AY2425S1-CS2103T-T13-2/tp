@@ -49,10 +49,10 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
                 .map(String::toLowerCase)
                 .toList();
 
-        // Stream through the tags and check if any tag matches a keyword (case-insensitive)
+        // Stream through the tags and check if any tag starts with a keyword (case-insensitive)
         return tags.stream().anyMatch(tag ->
                 lowerCaseKeywords.stream()
-                        .anyMatch(keyword -> tag.getTagName().toString().toLowerCase().contains(keyword))
+                        .anyMatch(keyword -> tag.getTagName().toString().toLowerCase().startsWith(keyword))
         );
     }
 

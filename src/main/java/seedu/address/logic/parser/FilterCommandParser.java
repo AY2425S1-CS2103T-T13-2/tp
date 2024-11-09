@@ -13,13 +13,11 @@ import seedu.address.model.person.TagsContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
-
-    private static final String VALID_KEYWORD_REGEX = "^[a-zA-Z0-9]+$";
-
+    private static final String VALID_KEYWORD_REGEX = "^[a-zA-Z0-9\\- ]+$";
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
      * and returns a FilterCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public FilterCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
@@ -28,9 +26,12 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        // Replace hyphens with spaces
+        String modifiedArgs = trimmedArgs.replaceAll("-", " ");
 
-        // Validate that each keyword is alphabetic
+        String[] nameKeywords = modifiedArgs.split("\\s+");
+
+        // Validate that each keyword matches the allowed pattern
         for (String keyword : nameKeywords) {
             if (!keyword.matches(VALID_KEYWORD_REGEX)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));

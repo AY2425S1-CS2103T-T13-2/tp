@@ -479,13 +479,14 @@ Examples:
 You can filter the customer list by tags or shortcuts to view only the relevant contacts. The filter command supports prefix searches, is case-insensitive, and allows multiple keywords.
 
 Format: `filter [KEYWORDS] [MORE_KEYWORDS] ...`
-* Filters the list by the specified tags. 
+* Filters the list by the specified tags.
+* Replace spaces in multi-word tags with hyphens (-) when entering them as keywords.
 * Shortcuts can also be used to filter, allowing quick access to commonly used tags.
 
 Examples:
 * Assuming "v" (Vegan) and "np" (No Pork) shortcuts are set:
-    - `filter Vegan Pork` — Shows all customers with tags containing "Vegan" or "Pork" (e.g., "VeganPlus" which includes keyword "Vegan").
-    - `filter v np` — Uses shortcuts to show customers tagged as "Vegan" or "No Pork" or other tags that start with those keywords, "v" & "np" (e.g., "VeganFri" which starts with "v").
+    - `filter Vegan No-Pork` — Displays all customers with tags that start with “Vegan” or “No Pork” (e.g., “VeganPlus,” which starts with “Vegan”). 
+    - `filter v np` — Uses shortcuts to display customers with tags that start with “Vegan” or “No Pork,” or any other tags beginning with those shortcuts, “v” and “np” (e.g., “Vegetarian,” which starts with “v”).
 
 <div style="text-align: center;">
     <img src="images/filter.png" alt="filter" width="350"/>
@@ -611,8 +612,8 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NomNomNotifier home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
