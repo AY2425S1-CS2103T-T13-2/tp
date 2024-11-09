@@ -17,7 +17,8 @@ public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters list according to tags "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n\n"
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "To find tags with spaces, replace the space with '-' \n\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "< If the tag 'Vegan' is used > \n"
             + "Example: " + COMMAND_WORD

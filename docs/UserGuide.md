@@ -483,7 +483,7 @@ Usage:
 - **In Edit Command**: `edit INDEX t/ALIAS` — Edits the tag for the contact at the specified index with the tag name associated with specified alias.
 - **In Add Command**: `add ... t/ALIAS` — Adds a new contact with the tag name associated with specified alias.
 
-Examples: 
+Examples:
 - Assuming "v" (Vegan) and "vg" (Vegetarian) shortcuts have been set:
     - `edit 1 t/vg` — Tags the contact at index 1 with "Vegetarian".
     - `edit 1 t/Vg t/v` — Tags the contact at index 1 with "Vegetarian" and "Vegan".

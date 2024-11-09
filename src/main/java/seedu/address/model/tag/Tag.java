@@ -31,17 +31,11 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(!tagName.trim().isEmpty(), "Tag name cannot be empty");
-
-        // Normalize tagName to lowercase for consistent lookup
         String normalizedTagName = tagName.toLowerCase();
-        // Check if normalizedTagName exists in shortCutMap and replace it with that mapped value if it exists
         String fullTagName = shortCutMap.getOrDefault(normalizedTagName, tagName);
-
-        // If fullTagName is not mapped, capitalize only the first letter
         if (!shortCutMap.containsKey(normalizedTagName)) {
             fullTagName = fullTagName.substring(0, 1).toUpperCase() + fullTagName.substring(1).toLowerCase();
         }
-
         checkArgument(isValidTagName(fullTagName), MESSAGE_CONSTRAINTS);
         this.tagName = fullTagName;
     }
