@@ -317,7 +317,7 @@ The `download` command allows users to export customer data in CSV format. Users
 
 #### Usage
 ```plaintext
-download [t/TAG_NAME...] 
+download [t/TAG_NAME...]
 ```
 - `t/TAG_NAME`: Optional. Specifies the tags to filter customers. Only customers with the specified tags will be included in the exported file.
 - If no tags are provided, all customer data will be exported.
@@ -365,7 +365,7 @@ download [t/TAG_NAME...]
           - If the list is not empty:
               - Converts the customer data to CSV format.
               - Writes the CSV data to a file in the default output location.
-        
+
 
 #### Sequence Diagram
 Below is the sequence diagram for the `download` command:
@@ -621,7 +621,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. AddressBook shows a list of customers
 3. Manager requests to search for customer by name/phone number
 4. AddressBook shows the customer
-   Use Case Ends 
+   Use Case Ends
 
 **Extension**
 * 1a. Manager request/invalid/incomplete
@@ -688,11 +688,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed. 
-2. Command Response Time: All operations (add, delete, search) should respond within 1 second 
-3. Bulk Operations: Bulk actions (e.g., adding multiple customers) should handle up to 100 records and complete within 2 seconds 
+1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2. Command Response Time: All operations (add, delete, search) should respond within 1 second.
+3. Bulk Operations: Bulk actions (e.g., adding multiple customers) should handle up to 100 records and complete within 2 seconds.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Error Handling: Meaningful error messages should be provided for invalid inputs (e.g., invalid email or phone number). 
+4. Error Handling: Meaningful error messages should be provided for invalid inputs (e.g., invalid email or phone number).
 5. Command Documentation: Provide help text for each command and clear usage instructions.
 
 ### Glossary
