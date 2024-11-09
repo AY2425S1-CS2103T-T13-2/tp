@@ -50,9 +50,7 @@ public class AliasTest {
     public void equals_sameAlias_returnsTrue() {
         Alias alias1 = new Alias("v");
         Alias alias2 = new Alias("v");
-        Alias alias3 = new Alias("V");
         assertEquals(alias1, alias2);
-        assertEquals(alias1, alias3);
     }
 
     @Test

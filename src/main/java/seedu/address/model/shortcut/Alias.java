@@ -18,7 +18,7 @@ public class Alias {
     public Alias(String alias) {
         requireNonNull(alias);
         checkArgument(isValidAlias(alias), MESSAGE_CONSTRAINTS);
-        this.alias = alias;
+        this.alias = alias.toLowerCase();
     }
 
     /**

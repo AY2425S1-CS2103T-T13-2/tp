@@ -17,8 +17,10 @@ public class FullTagName {
      */
     public FullTagName(String fullTagName) {
         requireNonNull(fullTagName);
-        checkArgument(isValidTagName(fullTagName), MESSAGE_CONSTRAINTS);
-        this.fullTagName = fullTagName;
+        // Standardize capitalization: first letter uppercase, rest lowercase
+        String formattedTagName = fullTagName.substring(0, 1).toUpperCase() + fullTagName.substring(1).toLowerCase();
+        checkArgument(isValidTagName(formattedTagName), MESSAGE_CONSTRAINTS);
+        this.fullTagName = formattedTagName;
     }
 
     /**

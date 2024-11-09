@@ -38,7 +38,7 @@ public class TagTest {
     public void testGetTagName() {
         Tag tag = new Tag("exampleTag");
         String result = tag.getTagName();
-        assertEquals("exampleTag", result);
+        assertEquals("ExampleTag", result);
     }
 
     @Test

@@ -18,8 +18,8 @@ import seedu.address.model.shortcut.ShortCut;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "^[\\p{Alnum}][\\p{Alnum} ]*[\\p{Alnum}]?$";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and within 30 characters";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}][\\p{Alnum} ]{0,28}[\\p{Alnum}]?$";
     private static final Logger logger = LogsCenter.getLogger(Tag.class);
     private static HashMap<String, String> shortCutMap = new HashMap<>();
     public final String tagName;
@@ -30,8 +30,18 @@ public class Tag {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        //check if tagname exists in shortCutMap and replace it with that mapped value if exist
-        String fullTagName = shortCutMap.getOrDefault(tagName, tagName);
+        checkArgument(!tagName.trim().isEmpty(), "Tag name cannot be empty");
+
+        // Normalize tagName to lowercase for consistent lookup
+        String normalizedTagName = tagName.toLowerCase();
+        // Check if normalizedTagName exists in shortCutMap and replace it with that mapped value if it exists
+        String fullTagName = shortCutMap.getOrDefault(normalizedTagName, tagName);
+
+        // If fullTagName is not mapped, capitalize only the first letter
+        if (!shortCutMap.containsKey(normalizedTagName)) {
+            fullTagName = fullTagName.substring(0, 1).toUpperCase() + fullTagName.substring(1).toLowerCase();
+        }
+
         checkArgument(isValidTagName(fullTagName), MESSAGE_CONSTRAINTS);
         this.tagName = fullTagName;
     }

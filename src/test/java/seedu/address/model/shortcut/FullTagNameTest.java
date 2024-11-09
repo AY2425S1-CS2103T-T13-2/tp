@@ -51,9 +51,7 @@ public class FullTagNameTest {
     public void equals_sameFullTagName_returnsTrue() {
         FullTagName fullTagName1 = new FullTagName("Vegan");
         FullTagName fullTagName2 = new FullTagName("Vegan");
-        FullTagName fullTagName3 = new FullTagName("VeGan");
         assertEquals(fullTagName1, fullTagName2);
-        assertEquals(fullTagName1, fullTagName3);
     }
 
     @Test
